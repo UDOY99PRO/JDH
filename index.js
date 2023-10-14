@@ -1,6 +1,6 @@
 async function run(){
   //including web server
-require("/dashboard/app.js");
+require("./dashboard/app.js");
   var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
  var fs = require("fs");
 
@@ -34,8 +34,8 @@ client.on("ready", () => {
 client.user.setStatus('idle');
 client.user.setActivity({ name: `JDH OFFICIAL`, type: 0 })
 
-fs.readdirSync('/_events').forEach((event) => {
-      require(`/_events/${event}`)(client)
+fs.readdirSync('./_events').forEach((event) => {
+      require(`./_events/${event}`)(client)
     });
 });
 }
