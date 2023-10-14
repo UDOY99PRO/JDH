@@ -1,26 +1,9 @@
 async(() => {
-var app = require("express")();
-app.listen(3000);
-// Get the current UTC time
-var currentUTCDate = new Date();
-
-// Adjust the UTC time by adding 5 hours and 30 minutes
-currentUTCDate.setUTCHours(currentUTCDate.getUTCHours() + 5);
-currentUTCDate.setUTCMinutes(currentUTCDate.getUTCMinutes() + 30);
-
-// Format the date as a string (you can adjust the format as needed)
-var formattedDate = currentUTCDate.toISOString();
-
-console.log(formattedDate);
-
-let uptime = 0;
-setInterval(() => {
-  uptime++;
-}, 1000);
-app.get("/", (q, res) => {
-  res.send(`${uptime} , started: ${formattedDate}`);
-});
+  //including web server
+require("/dashboard/app.js");
   var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
+ var fs = require("fs");
+
 
 const client = new Client({
     fetchAllMembers: true,
@@ -46,9 +29,16 @@ const client = new Client({
   });
 client.login(process.env.BOT_TOKEN);
 
-client.on("ready", ()=> {
-  console.log("started");
+client.on("ready", () => {
+  console.log(`Client started as: ${client.user.username}`);
+client.user.setStatus('idle');
+client.user.setActivity({ name: `JDH OFFICIAL`, type: 0 })
+
+fs.readdirSync('/_events').forEach((event) => {
+      require(`/_events/${event}`)(client)
+    });
 });
+
 client.on("messageCreate", (message) => {
   if(message.bot) return;
   if(message.content == "!ping!"){
