@@ -2,9 +2,11 @@ async function run(){
   //including web server
 require("./dashboard/app.js");
 require("./function/console.js");
-  var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
- var fs = require("fs");
-
+var Discord = require("discord.js");
+global.Discord = Discord;
+var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
+var fs = require("fs");
+global.fs = fs;
 
 const client = new Client({
     fetchAllMembers: true,
