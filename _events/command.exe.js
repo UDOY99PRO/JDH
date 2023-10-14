@@ -2,7 +2,7 @@ module.exports= (client) => {
   client.on('messageCreate', async (message) =>{
     if(message.author.bot){	return; }
 
-    var prerix = "-";
+    var prefix = "-";
  if(!message.content.startsWith(prefix)){ return; }
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
        const cmd = args.shift().toLowerCase();
