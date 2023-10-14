@@ -7,4 +7,4 @@ client.on("messageCreate", (message) => {
         message.reply({content: `${client.uptime}`});
   }
 });
-});
+};
