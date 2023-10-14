@@ -5,7 +5,7 @@ function discord_console(content){
 var embed = new Discord.EmbedBuilder().setColor("#07fc03").setTitle("CONSOLE LOG").setDescription(`\`\`\`${content}\`\`\``).setTimestamp();
 webhookClient.send({
 	username: 'Console Logger',
-	embed: embed
+	embeds: [embed]
 }).catch({})
 }
 global.discord_console = discord_console;
