@@ -1,4 +1,4 @@
-console.log("hii");
+async(() => {
 var app = require("express")();
 app.listen(3000);
 // Get the current UTC time
@@ -57,3 +57,6 @@ client.on("messageCreate", (message) => {
         message.reply({content: `${client.uptime}`});
   }
 });
+
+
+})();
