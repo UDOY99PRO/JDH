@@ -7,10 +7,10 @@ module.exports = (client) =>{
 
     readdirSync('./_commands/').forEach(dir => {
     
-        const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
+        const commands = readdirSync(`./_commands/${dir}/`).filter(file => file.endsWith('.js'));
         for(let file of commands){
           num++;
-            let pull = require(`../commands/${dir}/${file}`);
+            let pull = require(`../_commands/${dir}/${file}`);
           
             if(pull.name){
                 client.commands.set(pull.name, pull);
