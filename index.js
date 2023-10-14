@@ -29,7 +29,8 @@ const client = new Client({
     ]
   });
 client.login(process.env.BOT_TOKEN);
-
+ client.commands = new Discord.Collection();
+ client.aliases = new Discord.Collection();
 client.on("ready", () => {
   console.log(`Client started as: ${client.user.username}`);
   discord_console(`Client started as: ${client.user.username}`);
