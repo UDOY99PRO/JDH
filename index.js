@@ -32,9 +32,11 @@ client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
   console.log(`Client started as: ${client.user.username}`);
+  discord_console(`Client started as: ${client.user.username}`);
 client.user.setStatus('idle');
-client.user.setActivity({ name: `JDH OFFICIAL`, type: 0 })
-
+discord_console("status Set to IDLE [🌙]");
+client.user.setActivity({ name: `JDH OFFICIAL`, type: 0 });
+  
 fs.readdirSync('./_events').forEach((event) => {
       require(`./_events/${event}`)(client)
     });
