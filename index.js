@@ -2,6 +2,7 @@ async function run(){
   //including web server
 require("./dashboard/app.js");
 require("./function/console.js");
+require("./function/ms.js");
 var Discord = require("discord.js");
 global.Discord = Discord;
 var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
