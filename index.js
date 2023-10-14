@@ -1,4 +1,4 @@
-async(() => {
+async function run(){
   //including web server
 require("/dashboard/app.js");
   var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
@@ -38,4 +38,5 @@ fs.readdirSync('/_events').forEach((event) => {
       require(`/_events/${event}`)(client)
     });
 });
-})();
+}
+run();
