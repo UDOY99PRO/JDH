@@ -13,3 +13,4 @@ module.exports = function(db, params, options) {
   if (params.ops.target) fetched = get(fetched, params.ops.target); // Get prop using dot notation
 
   return typeof fetched;
+}
