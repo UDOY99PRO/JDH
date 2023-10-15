@@ -41,3 +41,4 @@ module.exports = function(db, params, options) {
     return newData
 
   }
+}
