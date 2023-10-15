@@ -1,10 +1,17 @@
 module.exports = async (client) =>{
   async function update() {
     const guild = client.guilds.cache.get('1150446046007283734');
-   
+   if(!guild) {
+     return;
+   }
   const channel = guild.channels.cache.find(c => c.id === '1162979196402925569');
-    
-  const m = await channel.messages.fetch('1111978203339313192');
+   if(!channel) {
+     return;
+   } 
+  const m = await channel.messages.fetch('1163003635291140138');
+    if(!m) {
+     return;
+    }
 let totalSeconds = (client.uptime / 1000);
 let days = Math.floor(totalSeconds / 86400);
 totalSeconds %= 86400;
