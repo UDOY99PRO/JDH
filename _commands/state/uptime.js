@@ -10,7 +10,7 @@ var rawTime = ms(client.uptime);
 let embed = new Discord.EmbedBuilder()
 .setTitle(`⏱️ | Bot's Uptime`)
 .setDescription(`\`\`\`js\nMy Current Uptime is: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.\`\`\``)
-.setColor("")
+.setColor("#18f02a")
 .setFooter({text: `Requested by ${message.author.tag}`, iconURL: message.author.avatarURL()})
 
 message.channel.send({ embeds: [embed] });
