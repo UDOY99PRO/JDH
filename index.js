@@ -3,6 +3,8 @@ async function run(){
 require("./dashboard/app.js");
 require("./function/console.js");
 require("./function/ms.js");
+var qdb = require("./_db/quick.js");
+global.qdb = qdb;
 var Discord = require("discord.js");
 global.Discord = Discord;
 var { GatewayIntentBits, Partials, Client, Events } = require("discord.js"); 
