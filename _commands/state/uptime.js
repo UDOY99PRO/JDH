@@ -3,10 +3,10 @@
   aliases: [],
   execute: async(client, message, args) => {
 var rawTime = ms(client.uptime);
-    var days = rawTime;
-    var hours = rawTime;
-    var minutes = rawTime;
-    var seconds = rawTime;
+    var days = rawTime.days;
+    var hours = rawTime.hours;
+    var minutes = rawTime.minutes;
+    var seconds = rawTime.seconds;
 let embed = new Discord.EmbedBuilder()
 .setTitle(`⏱️ | Bot's Uptime`)
 .setDescription(`\`\`\`js\nMy Current Uptime is: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.\`\`\``)
