@@ -47,5 +47,7 @@ fs.readdirSync('./_events').forEach((event) => {
       require(`./_events/${event}`)(client)
     });
 });
+  console.log(qdb.set("test", "yes"));
+  console.log(qdb.get("test"));
 }
 run();
