@@ -18,7 +18,7 @@ jobs:
         node-version: 14
 
     - name: Install Dependencies
-      run: npm install discord.js quick.db fs
+      run: npm install discord.js quick.db fs express lodash
 
     - name: Run Bot
       run: node index.js
