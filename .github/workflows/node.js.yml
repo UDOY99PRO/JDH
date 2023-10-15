@@ -18,5 +18,14 @@ jobs:
         node-version: 14
 
     - name: Install Dependencies
-      run: npm install quick.db express
+      run: npm install
 
+    - name: Run Bot
+      run: node index.js
+
+
+
+
+
+
+      
