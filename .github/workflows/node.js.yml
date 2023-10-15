@@ -28,5 +28,5 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        npm install discord.js
+        npm install
         npm audit --production
