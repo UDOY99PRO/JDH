@@ -1,6 +1,8 @@
 async function run(){
   //including web server
 require("./dashboard/app.js");
+require("./include/icons.js");
+require("./include/colors.js");
 require("./function/console.js");
 require("./function/ms.js");
 var qdb = require("./_db/quick.js");
