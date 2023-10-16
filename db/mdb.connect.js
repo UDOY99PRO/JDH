@@ -1,7 +1,7 @@
-var mongoose = require("mongoose"),
+var mongoos = require("mongoose"),
  
-mongoose.set('strictQuery', false);
-  mongoose.connect(process.env["MONGO"], {
+mongoos.set('strictQuery', false);
+  mongoos.connect(process.env["MONGO"], {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   }).then(async (a, b) => {
