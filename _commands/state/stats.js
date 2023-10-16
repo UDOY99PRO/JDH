@@ -2,7 +2,7 @@ module.exports = {
   name: "stats",
   aliases: ["botstat", "stat", "botstats", "botinfo"],
   description: "",
-  execute: async (client, message, args, data, db, c, emoji) => {
+  execute: async (client, message, args) => {
 var prefix = "-";
 
     const embed = new Discord.EmbedBuilder()
@@ -21,10 +21,10 @@ var prefix = "-";
     
     •••••••••••••••••••••••••••••••••••••••••••••••••••••••
     
-    ${icon.latency} Ping    » ${Math.round(client.ws.ping)} ms     ${client.ws.ping > 100 ? icon.red_dot : icon.green_dot}
-    ${icon.clock} Uptime    » ${duration}
-    ${icon.bell} Total Message Command    » ${client.message_commands}
-    ${icon.slash} Total Slash Command    » ${client.slash_commands}
+    ${icon.latency} Ping    » ${Math.round(client.ws.ping)} ms     ${client.ws.ping > 300 ? icon.red_dot : icon.green_dot}
+    ${icon.clock} Uptime    » ${ms(client.uptime).days} D, ${ms(client.uptime).hours} H, ${ms(client.uptime).minutes} M, ${ms(client.uptime).seconds} S.
+    ${icon.bell} Total Message Command    » ${0}
+    ${icon.slash} Total Slash Command    » ${0}
 
    •••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
