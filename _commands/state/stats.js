@@ -28,7 +28,7 @@ var prefix = "-";
 
    •••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
-    ${icon.devloper} Bot Devloper    »   ${client.application.owner.tag}
+    ${icon.devloper} Bot Devloper    »   sujoy__
     ${icon.discord} Total Guild Count  » ${client.guilds.cache.size}
     ${icon.channel} Total Channel Count  » ${client.channels.cache.size}
     ${icon.users} Total Bot users  » ${client.users.cache.size}
