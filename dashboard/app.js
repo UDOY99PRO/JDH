@@ -7,5 +7,5 @@ app.set('views', path.join(__dirname, 'views')); // Replace 'views' with your ac
 var server = app.listen(3000);
 console.log("web service Started");
 app.get("/", (q, res) => {
-  return res.send("Server route /");
+  return res.render("index");
 });
