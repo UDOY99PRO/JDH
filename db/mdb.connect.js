@@ -1,7 +1,7 @@
-var mongoos = require("mongoose"),
- console.log(moongoos);
-//mongoos.set('strictQuery', false);
- /* mongoos.connect(process.env["MONGO"], {
+var mongoos = require("mongoose");
+ 
+mongoos.set('strictQuery', false);
+  mongoos.connect(process.env["MONGO"], {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   }).then(async (a, b) => {
@@ -11,4 +11,4 @@ var mongoos = require("mongoose"),
  global.mongo_conn = false;
    console.log(err)
     })
-*/
+
