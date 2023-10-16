@@ -1,6 +1,7 @@
 
-const mongoose = require("mongoose"),
+var mongoose = require("mongoose"),
 //colors = require("colors");
+  
 mongoose.set('strictQuery', false);
   mongoose.connect(process.env["MONGO"], {
   useNewUrlParser: true,
