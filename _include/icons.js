@@ -1,4 +1,4 @@
-global.icons = {
+var iconn = {
   discord: '<:Discord:1163325362168680488>',
   servers: '<:Servers:1163324486016307231>',
   bank: '<:bank:1163325316941479936>',
@@ -27,3 +27,5 @@ global.icons = {
   users: '<:users:1163325345630531674>',
   wallet: '<:wallet:1163325318958940200>',
 };
+global.icons = iconn;
+global.icon = iconn;
