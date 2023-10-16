@@ -15,7 +15,7 @@ var mdb = {
 };
 var pinG;
 var lastPingFetched = Date.now();
-module.exports = {
+global.db = {
 
 async set(key, val) {
   if(!key || !val){ return `provide a ${key? "value" : "key" }`}
