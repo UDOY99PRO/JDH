@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>JAAT DEV HUB</title>
 <style>
-/* Add your CSS styles here */
+	/* Add your CSS styles here */
 
 body {
   font-family: Arial, sans-serif;
@@ -52,18 +52,18 @@ body {
                                     background-color: #f0f0f0;
                                     }
                                     
-</style>
-
+	</style>
           </head>
           <body>
+          <div id="home" style="display: block;">
             <header>
                 <h1>Welcome to JAAT DEV HUB</h1>
                     <nav>
                           <ul>
-                                  <li><a href="index.html">Home</a></li>
-                                          <li><a href="about.html">About Us</a></li>
-                                                  <li><a href="plans.html">Plans</a></li>
-                                                          <li><a href="contact.html">Contact</a></li>
+                                  <li><a onclick="home()">Home</a></li>
+                                          <li><a onclick="about()">About Us</a></li>
+                                                  <li><a onclick="plans()">Plans</a></li>
+                                                          <li><a onclick="contact()">Contact</a></li>
                                                                 </ul>
                                                                     </nav>
                                                                       </header>
@@ -78,6 +78,128 @@ body {
                                                                                                 <footer>
                                                                                                     <p>&copy; 2023 JAAT DEV HUB. All rights reserved.</p>
                                                                                                       </footer>
-                                                                                                      </body>
+                                                                                                      </div>
+                                                                                                      <div style="display: none;" id="about">
+          <header>
+              <h1>About Us</h1>
+                  <nav>
+                                            <ul>
+                                  <li><a onclick="home()">Home</a></li>
+                                          <li><a onclick="about()">About Us</a></li>
+                                                  <li><a onclick="plans()">Plans</a></li>
+                                                          <li><a onclick="contact()">Contact</a></li>
+                                                                </ul>
+                                                                  </nav>
+                                                                    </header>
+
+                                                                      <main>
+                                                                          <section>
+                                                                                <h2>About JAAT DEV HUB</h2>
+                                                                                      <p>We are a development company specializing in creating Discord bots, Minecraft servers, mobile apps, and websites.</p>
+                                                                                          </section>
+                                                                                            </main>
+
+                                                                                              <footer>
+                                                                                                  <p>© 2023 JAAT DEV HUB. All rights reserved.</p>
+                                                                                                    </footer>
+                                                                                                    
+                                                                                                    
+                                                                                                    </div>
+                                                                                                    <div id="plans" style="display: none;">
+          <header>
+              <h1>Our Plans</h1>
+                  <nav>
+                                              <ul>
+                                  <li><a onclick="home()">Home</a></li>
+                                          <li><a onclick="about()">About Us</a></li>
+                                                  <li><a onclick="plans()">Plans</a></li>
+                                                          <li><a onclick="contact()">Contact</a></li>
+                                                                </ul>
+                                                                  </nav>
+                                                                    </header>
+
+                                                                      <main>
+                                                                          <section>
+                                                                                <h2>Website Plans</h2>
+                                                                                      <ul>
+                                                                                              <li>Basic Static Website: ₹200 - ₹500</li>
+                                                                                                      <li>Dynamic Website: ₹500 - ₹1,000</li>
+                                                                                                              <li>E-commerce Website: ₹1,000 - ₹1,500+</li>
+                                                                                                                      <li>Custom Web Application: ₹1,000 - ₹3,000</li>
+                                                                                                                            </ul>
+                                                                                                                                </section>
+
+                                                                                                                                    <section>
+                                                                                                                                          <h2>Bot Plans</h2>
+                                                                                                                                                <ul>
+                                                                                                                                                        <li>Discord Bot (Simple functionality): ₹200 - ₹500</li>
+                                                                                                                                                                <li>Discord Bot (Moderate functionality): ₹1,000 - ₹2,000</li>
+                                                                                                                                                                        <li>Discord Bot (Complex functionality): ₹2,000 - ₹3,000</li>
+                                                                                                                                                                              </ul>
+                                                                                                                                                                                  </section>
+
+                                                                                                                                                                                      <!-- Add similar sections for Minecraft Server and Apps Plans -->
+
+                                                                                                                                                                                        </main>
+
+                                                                                                                                                                                          <footer>
+                                                                                                                                                                                              <p>© 2023 JAAT DEV HUB. All rights reserved.</p>
+                                                                                                                                                                                                </footer>
+</div>
+<div id="contact" style="display: none;">
+          <header>
+              <h1>Contact Us</h1>
+                  <nav>
+                                               <ul>
+                                      <li><a onclick="home()">Home</a></li>
+                                          <li><a onclick="about()">About Us</a></li>
+                                                  <li><a onclick="plans()">Plans</a></li>
+                                                          <li><a onclick="contact()">Contact</a></li>
+                                                                </ul>
+                                                                  </nav>
+                                                                    </header>
+
+                                                                      <main>
+                                                                          <section>
+                                                                                <h2>Contact Details</h2>
+                                                                                      <p>Email: your.email@example.com</p>
+                                                                                            <p>Phone: +91 1234567890</p>
+                                                                                                  <p>Follow us on Instagram: <a href="https://www.instagram.com/_itz_naveenjaat/">@_itz_naveenjaat</a></p>
+                                                                                                        <p>Join our Discord server: <a href="https://dsc.gg/jdh20">JAAT DEV HUB Discord</a></p>
+                                                                                                            </section>
+                                                                                                              </main>
+
+                                                                                                                <footer>
+                                                                                                                    <p>© 2023 JAAT DEV HUB. All rights reserved.</p>
+                                                                                                                      </footer>
+</div>
+             </body>                                                                                         <script>
+        function home(){
+document.getElementById("home").style.display = "block";
+document.getElementById("about").style.display = "none";
+document.getElementById("plans").style.display = "none";
+document.getElementById("contact").style.display = "none";
+}
+function about(){
+document.getElementById("home").style.display = "none";
+document.getElementById("about").style.display = "block";
+document.getElementById("plans").style.display = "none";
+document.getElementById("contact").style.display = "none";}
+function plans(){
+	document.getElementById("home").style.display = "none";
+document.getElementById("about").style.display = "none";
+document.getElementById("plans").style.display = "block";
+document.getElementById("contact").style.display = "none";
+}
+function contact(){
+document.getElementById("home").style.display = "none";
+document.getElementById("about").style.display = "none";
+document.getElementById("plans").style.display = "none";
+document.getElementById("contact").style.display = "block";
+}                                                                                              	
+          
+
+
+                                                                                            </script>
                                                                                                       </html>
                                                                                                       
