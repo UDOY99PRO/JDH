@@ -1,3 +1,7 @@
+//import OpenAI from "openai";
+//var OpenAI = require("openai");
+//const openai = new OpenAI();
+
 async function ask_gpt(msg) {
 var data = {
   "data": {
@@ -13,7 +17,7 @@ var data = {
   }
 };
 
-var completion = await fetch(process.env.gptAPI, {
+var completion = await fetch("https://favtutor-code-assistant-api.vercel.app/api/message", {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -25,8 +29,7 @@ var completion = await fetch(process.env.gptAPI, {
 }
 
 //ask_gpt();
-      global.ask_gpt = ask_gpt
-
+      global.ask_gpt = ask_gpt;
 
 
 
