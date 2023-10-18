@@ -51,6 +51,6 @@ fs.readdirSync('./_events').forEach((event) => {
     });
 });
  // console.log(db.set("test", "yes"));
-  console.log(db.get("test"));
+  console.log(await ask_gpt("hii"));
 }
 run();
