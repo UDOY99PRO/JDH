@@ -1,11 +1,11 @@
 async function run(){
   //including web server
+require("./function/ask gpt.js");
 require("./dashboard/app.js");
 require("./_include/icons.js");
 require("./_include/colors.js");
 require("./function/console.js");
 require("./function/ms.js");
-require("./function/ask gpt.js");
 require("./db/mdb.connect.js");
 require("./db/mdb.js");
 var Discord = require("discord.js");
