@@ -25,4 +25,14 @@ var completion = await fetch(gptAPI, {
 }
 
 //ask_gpt();
-      module.exports = ask_gpt
+      global.ask_gpt = ask_gpt
+
+
+
+
+
+
+
+
+
+
