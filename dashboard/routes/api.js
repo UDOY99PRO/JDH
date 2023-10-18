@@ -8,7 +8,7 @@ router.get("/", (q, res) => {
 router.post("/gpt", async(req, res) => {
 var message = req.body.message;
   var resp = await ask_gpt(message);
-  res.send(resp);
+  res.json({response: resp, name: "Chat GPT"});
 });
 
 module.exports = router;
