@@ -13,7 +13,7 @@ var data = {
   }
 };
 
-var completion = await fetch(gptAPI, {
+var completion = await fetch(process.env.gptAPI, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
