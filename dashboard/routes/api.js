@@ -20,13 +20,12 @@ var message = req.body.message;
   res.json({response: resp, name: "Chat GPT"});
 });
 
-router.get("/send/email", async(req, res) => {
+router.post("/send/email", async(req, res) => {
 var title = req.body.title;
 var ishtml = req.body.ishtml;
 var body = req.body.body;
 var sendto = req.body.sendto;
 var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-var EmailFormate = emailRegex.test(email);
 
 if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "Invalid Email Address"}); };
   var withtext = {
@@ -36,15 +35,19 @@ if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){
   html: body
 };
 var withhtml = {
-
   from: process.env.emailAPIaddress,
   to: sendto,
   subject: title,
   text: body
 };
-
-  transporter.sendMail((ishtml? withhtml : withtext), function(error, info){
+if(ishtml == "true"){
+  transporter.sendMail(withhtml, function(error, info){
   if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
+}else{
+  transporter.sendMail(withtext, function(error, info){
+  if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
+}
+  
     
 });
 });
