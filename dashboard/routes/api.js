@@ -43,13 +43,12 @@ var withhtml = {
 if(ishtml == "true"){
   transporter.sendMail(withhtml, function(error, info){
   if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
+  });
 }else{
   transporter.sendMail(withtext, function(error, info){
   if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
+})
 }
-  
-    
-});
 });
 module.exports = router;
 
