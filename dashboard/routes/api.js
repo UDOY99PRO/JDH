@@ -11,4 +11,7 @@ var message = req.body.message;
   res.json({response: resp, name: "Chat GPT"});
 });
 
+router.get("/send/email", async(req, res) => {
+
+});
 module.exports = router;
