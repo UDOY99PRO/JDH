@@ -29,7 +29,29 @@ var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 var EmailFormate = emailRegex.test(email);
 
 if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "Invalid Email Address"}); };
+  var withtext = {
+  from: process.env.emailAPIaddress,
+  to: sendto,
+  subject: title,
+html: ``
+};
+var withhtml = {
+};
 
-
+  transporter.sendMail(mailOptions, function(error, info){
+  if (error) {} else {};
+    
+});
 });
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
