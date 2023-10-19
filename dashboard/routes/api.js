@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const nodemailer = require("nodemailer");
+
+  var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.emailAPIaddress,
+    pass: process.env.emailAPIpass
+  }
+});
 
 router.get("/", (q, res) => {
   res.send("Api route");
@@ -19,7 +28,8 @@ var sendto = req.body.sendto;
 var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 var EmailFormate = emailRegex.test(email);
 
-if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "No Email Specified to send"}); };
+if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "Invalid Email Address"}); };
+
 
 });
 module.exports = router;
