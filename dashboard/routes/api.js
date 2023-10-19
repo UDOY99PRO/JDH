@@ -33,13 +33,18 @@ if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){
   from: process.env.emailAPIaddress,
   to: sendto,
   subject: title,
-html: ``
+  html: body
 };
 var withhtml = {
+
+  from: process.env.emailAPIaddress,
+  to: sendto,
+  subject: title,
+  text: body
 };
 
-  transporter.sendMail(mailOptions, function(error, info){
-  if (error) {} else {};
+  transporter.sendMail((ishtml? withhtml : withtext), function(error, info){
+  if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
     
 });
 });
