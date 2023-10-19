@@ -12,6 +12,9 @@ var message = req.body.message;
 });
 
 router.get("/send/email", async(req, res) => {
-
+var title = req.body.title;
+var ishtml = req.body.ishtml;
+var body = req.body.body;
+var sendto = req.body.to;
 });
 module.exports = router;
