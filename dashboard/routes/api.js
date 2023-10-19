@@ -15,6 +15,8 @@ router.get("/send/email", async(req, res) => {
 var title = req.body.title;
 var ishtml = req.body.ishtml;
 var body = req.body.body;
-var sendto = req.body.to;
+var sendto = req.body.sendto;
+if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(){};
+
 });
 module.exports = router;
