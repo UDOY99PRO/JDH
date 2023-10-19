@@ -16,7 +16,10 @@ var title = req.body.title;
 var ishtml = req.body.ishtml;
 var body = req.body.body;
 var sendto = req.body.sendto;
-if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(){};
+var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+var EmailFormate = emailRegex.test(email);
+
+if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "No Email Specified to send"}); };
 
 });
 module.exports = router;
