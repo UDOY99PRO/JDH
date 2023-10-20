@@ -67,6 +67,7 @@ app.post('/chat', async (req, res) => {
     var data = await response.json();
     if(!data){ return res.json({ success: false, res: "Hello, I'm not feeling well, and my usual mechanic isn't responding. It might be a good time for a little break to recharge. If you consider this as an error, please contact the developer" });
  }
+    var resp = (data.cnt).replace(/\/g, ).replace(/\/g, ).replace(/\/g, ).replace(/\/g, );
     res.json({success: true, res: data.cnt});
   } catch (error) {
     res.json({ success: false, res: "Hello, I'm not feeling well, and my usual mechanic isn't responding. It might be a good time for a little break to recharge. If you consider this as an error, please contact the developer" });
