@@ -50,6 +50,23 @@ if(ishtml == "true"){
 })
 }
 });
+
+app.post('/chat', async (req, res) => {
+  var msg = req.body;
+  try {
+    const response = await fetch(`http://api.brainshop.ai/get?bid=165943&key=wVT6qqUA1nGrpuA5&uid=123&msg=${msg}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    var data = await response.json();
+    res.json({success: true, res: data.cnt});
+  } catch (error) {
+    res.json({ success: false, res: "I am not felling well" });
+  }
+});
+
+
 module.exports = router;
 
 
