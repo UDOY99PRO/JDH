@@ -16,6 +16,7 @@ router.get("/", (q, res) => {
 
 router.post("/gpt", async(req, res) => {
 var message = req.body.message;
+  if(!message){ return res.json({error: true, response: `Missing Data In Request use {"message": "your message"} as data`, name: "Chat GPT"}); };
   var resp = await ask_gpt(message);
   res.json({response: resp, name: "Chat GPT"});
 });
