@@ -51,7 +51,7 @@ if(ishtml == "true"){
 }
 });
 
-app.post('/chat', async (req, res) => {
+router.post('/chat-bot', async (req, res) => {
   var msg = req.body.message;
   if(!msg){ var msg = "  "; };
   var name = req.body.bot_name;
