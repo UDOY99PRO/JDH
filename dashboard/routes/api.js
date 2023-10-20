@@ -61,7 +61,7 @@ app.post('/chat', async (req, res) => {
   var owner = req.body.owner_name;
   if(!owner){ var owner = "Duplicate"; };
   var weburl = req.body.web_url;
-  if(!weburl){ var weburl = ""; };
+  if(!weburl){ var weburl = "https://rapidapi.com/sujoyk211/api/chat-bot-api"; };
   var company = req.body.company;
   if(!company){ var company = "Rapid API"; };
   try {
@@ -73,7 +73,7 @@ app.post('/chat', async (req, res) => {
     var data = await response.json();
     if(!data){ return res.json({ success: false, res: "Hello, I'm not feeling well, and my usual mechanic isn't responding. It might be a good time for a little break to recharge. If you consider this as an error, please contact the developer" });
  }
-    var resp = (data.cnt).replace(/\/g, ).replace(/\/g, ).replace(/\/g, ).replace(/\/g, );
+    var resp = (data.cnt).replace(/<name>/g, name).replace(/<gender>/g, gender).replace(/<owner>/g, owner).replace(/<company>/g, company).replace(/<weburl>/g, weburl);
     res.json({success: true, res: data.cnt});
   } catch (error) {
     res.json({ success: false, res: "Hello, I'm not feeling well, and my usual mechanic isn't responding. It might be a good time for a little break to recharge. If you consider this as an error, please contact the developer" });
