@@ -53,11 +53,17 @@ if(ishtml == "true"){
 
 app.post('/chat', async (req, res) => {
   var msg = req.body.message;
+  if(!msg){ var msg = "  "; };
   var name = req.body.bot_name;
+  if(!name){ var name = "🤖 • Rapid Chatter"; };
   var gender = req.body.bot_gender;
+  if(!gender){ var gender = "Male"; };
   var owner = req.body.owner_name;
+  if(!owner){ var owner = "Duplicate"; };
   var weburl = req.body.web_url;
+  if(!weburl){ var weburl = ""; };
   var company = req.body.company;
+  if(!company){ var company = "Rapid API"; };
   try {
     const response = await fetch(`http://api.brainshop.ai/get?bid=165943&key=wVT6qqUA1nGrpuA5&uid=123&msg=${msg}`, {
       method: 'GET',
