@@ -52,7 +52,12 @@ if(ishtml == "true"){
 });
 
 app.post('/chat', async (req, res) => {
-  var msg = req.body;
+  var msg = req.body.message;
+  var name = req.body.bot_name;
+  var gender = req.body.bot_gender;
+  var owner = req.body.owner_name;
+  var weburl = req.body.web_url;
+  var company = req.body.company;
   try {
     const response = await fetch(`http://api.brainshop.ai/get?bid=165943&key=wVT6qqUA1nGrpuA5&uid=123&msg=${msg}`, {
       method: 'GET',
