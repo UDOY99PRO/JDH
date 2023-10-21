@@ -100,8 +100,9 @@ router.post("/nsfw-image-gen", async(req, res) => {
     var type = typeArray[Math.floor(Math.random() * typeArray.length)];
   }
 fetch(`https://nekobot.xyz/api/image?type=${type}`).then(r => r.json()).then(res => {
-  res.json({success: true, url: , type: type});
+  res.json({success: true, url: res.message, type: type});
 }).catch(err => {
+  res.json({success: false, url: "", type: type, error: "somthing went wrong..."});
 });
 
 });
