@@ -105,6 +105,7 @@ fetch(`https://nekobot.xyz/api/image?type=${type}`, {
   headers: {
     'Authorization': '015445535454455354D6',
     'Content-Type': 'application/json',
+}
 }).then(r => r.json()).then(res => {
   res.json({success: true, url: res.message, type: type});
 }).catch(err => {
