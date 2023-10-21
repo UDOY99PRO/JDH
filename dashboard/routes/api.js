@@ -95,7 +95,9 @@ res.json({success: true, image: resu, format: "png" });
 });
 
 router.post("/nsfw-image-gen", async(req, res) => {
-  var type = req.body.type.toLowerCase();
+  if(type){
+  var type = (req.body.type).toLowerCase();
+  }
   var typeArray = ["pussy", "boobs", "ass", "gonewild", "thigh", "4k"];
   if(!type || !typeArray.includes(type)){
     var type = typeArray[Math.floor(Math.random() * typeArray.length)];
