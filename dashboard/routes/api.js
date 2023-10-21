@@ -93,6 +93,13 @@ res.json({success: true, image: resu, format: "png" });
  })
 });
 
+router.post("/nsfw-image-gen", async(req, res) => {
+  var type = req.body.type;
+  if(!type){
+    var type = "random";
+              }
+});
+
 
 module.exports = router;
 
