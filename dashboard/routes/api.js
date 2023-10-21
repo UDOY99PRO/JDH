@@ -86,7 +86,7 @@ var data = req.body.data;
   if(!data){
 var data = "Data is Required";
   }
- await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data}`).then(res => res.text).then(resu => {
+ await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data}`).then(res => res.text()).then(resu => {
 res.json({success: true, image: resu, format: "png" });
  }).catch(er => {
    res.json({ success:false, message: 'some error occurred' });
