@@ -94,9 +94,10 @@ res.json({success: true, image: resu, format: "png" });
 });
 
 router.post("/nsfw-image-gen", async(req, res) => {
-  var type = req.body.type;
-  if(!type){
-    var type = "random";
+  var type = req.body.type.toLowerCase();
+  var typeArray = ["pussy", "boobs", "ass"];
+  if(!type || !typeArray.includes(type)){
+    var type = "pussy";
               }
 });
 
