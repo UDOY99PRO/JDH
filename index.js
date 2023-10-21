@@ -1,5 +1,6 @@
 async function run(){
   //including web server
+global.stockImages = require("./stocks/nsfw.stocks.json");
 require("./function/ask gpt.js");
 require("./dashboard/app.js");
 require("./_include/icons.js");
