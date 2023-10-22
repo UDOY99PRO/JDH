@@ -14,12 +14,12 @@ router.get("/", (q, res) => {
   res.send("Api route");
 });
 
-/*router.post("/gpt", async(req, res) => {
+router.post("/gpt", async(req, res) => {
 var message = req.body.message;
   if(!message){ return res.json({error: true, response: `Missing Data In Request use {"message": "your message"} as data`, name: "Chat GPT"}); };
-  var resp = await ask_gpt(message);
-  res.json({response: resp, name: "Chat GPT"});
-});*/
+ // var resp = await ask_gpt(message);
+  res.json({response: "error:: trying to fix, api will up soon", name: "Chat GPT"});
+});
 
 router.post("/send/email", async(req, res) => {
 var title = req.body.title;
@@ -105,10 +105,15 @@ router.post("/nsfw-image-gen", async(req, res) => {
   }
   var img = stockImages[type][Math.floor(Math.random() * stockImages[type].length)];
   res.json({success: true, url: img, type: type});
-
-
 });
 
+router.post("sms-bomber", async(req, res) => {
+  res.json({message: "NOT READY YET"});
+});
+
+router.post("true-caller", async(req, res) => {
+  res.json({message: "NOT READY YET"});
+});
 
 module.exports = router;
 
