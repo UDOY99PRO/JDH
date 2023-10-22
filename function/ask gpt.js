@@ -3,7 +3,7 @@
 //const openai = new OpenAI();
 
 async function ask_gpt(msg) {
-var data = {
+/*var data = {
   "data": {
     "model": "gpt-3.5-turbo",
     "messages": [
@@ -26,6 +26,8 @@ var completion = await fetch("https://favtutor-code-assistant-api.vercel.app/api
 }).then(res => res.json());
      // console.log(completion)
   return await completion.message.choices[0].message.content;
+*/
+return "Error:: trying to fix.."
 }
 
 //ask_gpt();
