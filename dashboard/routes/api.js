@@ -95,13 +95,14 @@ res.json({success: true, image: resu, format: "png" });
 });
 
 router.post("/nsfw-image-gen", async(req, res) => {
- /* if(type){
-  var type = (req.body.type).toLowerCase();
+  var type = req.body.type;
+  if(type){
+  var type = type.toLowerCase();
   }
   var typeArray = ["pussy", "boobs", "ass", "gonewild", "thigh", "4k"];
   if(!type || !typeArray.includes(type)){
     var type = typeArray[Math.floor(Math.random() * typeArray.length)];
-  }*/
+  }
   var img = stockImages.pussy[Math.floor(Math.random() * stockImages.pussy.length)];
   res.json({success: true, url: img, type: "pussy"});
 
