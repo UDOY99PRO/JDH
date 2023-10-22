@@ -103,7 +103,7 @@ router.post("/nsfw-image-gen", async(req, res) => {
   if(!type || !typeArray.includes(type)){
     var type = typeArray[Math.floor(Math.random() * typeArray.length)];
   }
-  var img = stockImages.pussy[Math.floor(Math.random() * stockImages.pussy.length)];
+  var img = stockImages[type][Math.floor(Math.random() * stockImages[type].length)];
   res.json({success: true, url: img, type: "pussy"});
 
 
