@@ -112,16 +112,19 @@ router.post("/sms-bomber", async(req, res) => {
 });
 
 router.post("/true-caller", async(req, res) => {
-  var number = req.body.number;
+  let number;
+   number = req.body.number;
+  console.log(number)
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
+  
   var numdata = await truecaller.search({
     number: number,
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
   });
   var rawdata = JSON.parse(JSON.stringify(numdata)).data.data;
-
+console.log(rawdata)
   if(!rawdata){
     return res.json({success: false, msg: "Invalid Number or Country code!! valid format: +<cc><number>"});
   }
