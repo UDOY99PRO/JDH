@@ -113,18 +113,19 @@ router.post("/sms-bomber", async(req, res) => {
 
 router.post("/true-caller", async(req, res) => {
   var number = req.body.number;
-  var cc = req.body.country_code;
+  let finalData;
   if(!number){
     return res.json({success: false, msg: "number is required"});
-  }else if(!cc){
-    return res.json({success: false, msg: "country code is required"});
   }
   var numdata = await tc.search({
     number: number,
-    countryCode: "IN",
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
-  })
-  res.json({message: "NOT READY YET"});
+  });
+  var data = JSON.parse(JSON.stringify(numdata)).data.data[0];
+  if(!data){
+    return res.json({success: false, msg: "Invalid Number or Country code!! valid format: +<cc><number>"});
+  }
+
 });
 
 module.exports = router;
