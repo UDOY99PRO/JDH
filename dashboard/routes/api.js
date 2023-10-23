@@ -116,7 +116,7 @@ router.post("/true-caller", async(req, res) => {
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
-  var numdata = await tc.search({
+  var numdata = await truecaller.search({
     number: number,
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
   });
