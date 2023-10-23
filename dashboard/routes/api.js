@@ -121,10 +121,11 @@ router.post("/true-caller", async(req, res) => {
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
   });
   var rawdata = JSON.parse(JSON.stringify(numdata)).data.data;
-  var data = JSON.parse(JSON.stringify(numdata)).data.data[0];
+
   if(!rawdata){
     return res.json({success: false, msg: "Invalid Number or Country code!! valid format: +<cc><number>"});
   }
+    var data = JSON.parse(JSON.stringify(numdata)).data.data[0];
 res.json({
   success: true,
   name: data.name,
