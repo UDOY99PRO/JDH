@@ -123,6 +123,7 @@ router.post("/true-caller", async(req, res) => {
     number: number,
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
   });
+  console.log(numdata)
   var rawdata = JSON.parse(JSON.stringify(numdata));
 console.log(rawdata)
   if(!rawdata){
