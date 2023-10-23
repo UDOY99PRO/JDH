@@ -113,7 +113,6 @@ router.post("/sms-bomber", async(req, res) => {
 
 router.post("/true-caller", async(req, res) => {
   var number = req.body.number;
-  let finalData;
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
@@ -125,7 +124,18 @@ router.post("/true-caller", async(req, res) => {
   if(!data){
     return res.json({success: false, msg: "Invalid Number or Country code!! valid format: +<cc><number>"});
   }
-
+res.json({
+  success: true,
+  name: data.name,
+  phone: {
+  e164Format: data.phones[0].e164Format, numberType: data.phones[0].numberType, nationalFormat: data.phones[0].nationalFormat, countryCode: data.phones[0].countryCode, dialingCode: data.phones[0].dialingCode, carrier: data.phones[0].carrier
+}, 
+address: {
+city: data.addresses[0].city,
+timeZone: data.addresses[0].timeZone
+}  
+});
+  
 });
 
 module.exports = router;
