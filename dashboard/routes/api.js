@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
-
+var truecaller = require("truecallerjs");
   var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -119,6 +119,11 @@ router.post("/true-caller", async(req, res) => {
   }else if(!cc){
     return res.json({success: false, msg: "country code is required"});
   }
+  var numdata = await tc.search({
+    number: number,
+    countryCode: "IN",
+    installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
+  })
   res.json({message: "NOT READY YET"});
 });
 
