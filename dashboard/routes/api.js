@@ -123,11 +123,10 @@ router.post("/true-caller", async(req, res) => {
     number: number,
     installationId: "a1i09--igiKZRFEkqbtv3Vj_ZDC-wT-Hv9VuRn7Z3lhQ7vAcntUNnMsEu7-wQmyz",
   });
-  console.log(numdata)
   var rawdata = JSON.parse(JSON.stringify(numdata));
 console.log(rawdata)
-  if(!rawdata){
-    return res.json({success: false, msg: "Invalid Number or Country code!! valid format: +<cc><number>"});
+  if(!rawdata.data.data){
+    return res.json({success: false, msg: "Somthing Went wrong,.. :( , Looks Like number is not available,..  # valid format: +<cc><number>"});
   }
     var data = JSON.parse(JSON.stringify(numdata)).data.data[0];
 res.json({
