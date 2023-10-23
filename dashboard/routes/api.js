@@ -107,11 +107,18 @@ router.post("/nsfw-image-gen", async(req, res) => {
   res.json({success: true, url: img, type: type});
 });
 
-router.post("sms-bomber", async(req, res) => {
+router.post("/sms-bomber", async(req, res) => {
   res.json({message: "NOT READY YET"});
 });
 
-router.post("true-caller", async(req, res) => {
+router.post("/true-caller", async(req, res) => {
+  var number = req.body.number;
+  var cc = req.body.country_code;
+  if(!number){
+    return res.json({success: false, msg: "number is required"});
+  }else if(!cc){
+    return res.json({success: false, msg: "country code is required"});
+  }
   res.json({message: "NOT READY YET"});
 });
 
