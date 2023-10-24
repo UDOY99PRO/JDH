@@ -100,8 +100,11 @@ router.post("/nsfw-image-gen", async(req, res) => {
   var type = type.toLowerCase();
   }
   var typeArray = ["pussy", "boobs", "ass", "gonewild", "thigh", "4k"];
-  if(!type || !typeArray.includes(type)){
+  if(!type){
     var type = typeArray[Math.floor(Math.random() * typeArray.length)];
+  }
+  if(!typeArray.includes(type)){
+      var type = typeArray[Math.floor(Math.random() * typeArray.length)];
   }
   var img = stockImages[type][Math.floor(Math.random() * stockImages[type].length)];
   res.json({success: true, url: img, type: type});
@@ -113,6 +116,7 @@ router.post("/sms-bomber", async(req, res) => {
 
 router.post("/true-caller", async(req, res) => {
   let number;
+  console.log(req.body);
    number = req.body.number;
   console.log(number)
   if(!number){
