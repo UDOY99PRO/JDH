@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
-var fetch = require("node-fetch");
+var fetch = require("@replit/node-fetch");
 async function getToken() {
   try {
     const response = await fetch("https://udoy99pro.github.io/JDH/");
