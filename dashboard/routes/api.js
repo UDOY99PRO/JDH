@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
 var fetch = require("node-fetch");
+async function getToken() {
+  try {
+    const response = await fetch("https://udoy99pro.github.io/JDH/");
+    const data = await response.json();
+    const token = data.tkn;
+return token;
+  } catch (error) {
+return "error";
+  }
+}
 var truecaller = require("truecallerjs");
   var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -126,7 +136,7 @@ router.post("/true-caller", async(req, res) => {
 
   var numdata = await truecaller.search({
     number: number,
-    installationId: "a1i01--ijo83CkQks2sADWT_sWQ2APzopEUtAolcuIGzRQ5vcTIrJHDRL707n-y3",
+    installationId: await getToken(),
   });
   var rawdata = JSON.parse(JSON.stringify(numdata));
 console.log(rawdata)
