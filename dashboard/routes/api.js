@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require("nodemailer");
+var fetch = require("node-fetch");
 var truecaller = require("truecallerjs");
   var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -122,7 +123,7 @@ router.post("/true-caller", async(req, res) => {
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
-  
+
   var numdata = await truecaller.search({
     number: number,
     installationId: "a1i01--ijo83CkQks2sADWT_sWQ2APzopEUtAolcuIGzRQ5vcTIrJHDRL707n-y3",
