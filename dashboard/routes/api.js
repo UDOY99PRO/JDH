@@ -12,8 +12,28 @@ return token;
 return "error";
   }
 }
-var truecaller = require("truecallerjs");
-  var transporter = nodemailer.createTransport({
+
+const installationId = "a1i0N--ikac4aFqVy4KSqVOrCxVWwWH3wWx1psPbGgvKSPlBWy0nB-El670Awx2a";
+const requestOptions = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept-Encoding': 'gzip',
+    'User-Agent': 'Truecaller/11.75.5 (Android;12)',
+    'Authorization': `Bearer ${installationId}`
+  }
+};
+
+async function fetchPhoneDetails(cc, number){
+  try{
+  var data = await fetch(`https://search5-noneu.truecaller.com/v2/search?q=${number}&countryCode=${cc}&type=4&placement=SEARCHRESULTS,HISTORY,DETAILS&encoding=json`, requestOptions);
+return data.json();
+  }catch{
+    return "error";
+  }
+}
+
+var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.emailAPIaddress,
@@ -126,24 +146,20 @@ router.post("/sms-bomber", async(req, res) => {
 });
 
 router.post("/true-caller", async(req, res) => {
-  let number;
-  console.log(req.body);
-   number = req.body.number;
-  console.log(number)
+  let number = req.body.number;
+  let cc = req.body.country_code;
+
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
-
-  var numdata = await truecaller.search({
-    number: number,
-    installationId: await getToken(),
-  });
-  var rawdata = JSON.parse(JSON.stringify(numdata));
-console.log(rawdata)
-  if(!rawdata.data.data){
-    return res.json({success: false, msg: "Somthing Went wrong,.. :( , Looks Like number is not available,..  or too many requests  ...   !!!!    # valid format: +<cc><number>"});
+  if(!cc){
+   return res.json({success: false, msg: "country_code is required"});  
   }
-    var data = JSON.parse(JSON.stringify(numdata)).data.data[0];
+
+var data = await fetchPhoneDetails(cc, number);  
+  if(data == "error"){
+     return res.json({success: false, msg: "either Number Is Invalid or country code is invalid or Too many requests"});
+  }
 res.json({
   success: true,
   name: data.name,
