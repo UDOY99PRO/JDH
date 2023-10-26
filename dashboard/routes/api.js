@@ -156,10 +156,11 @@ router.post("/true-caller", async(req, res) => {
    return res.json({success: false, msg: "country_code is required"});  
   }
 
-var data = await fetchPhoneDetails(cc, number);  
-  if(data == "error"){
+var rawdata = await fetchPhoneDetails(cc, number);  
+  if(rawdata == "error"){
      return res.json({success: false, msg: "either Number Is Invalid or country code is invalid or Too many requests"});
   }
+ var data = rawdata.data[0]; 
 res.json({
   success: true,
   name: data.name,
