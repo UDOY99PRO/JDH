@@ -1,4 +1,5 @@
 const express = require('express');
+const translate = require('translate-google');
 const router = express.Router();
 const nodemailer = require("nodemailer");
 var fetch = require("@replit/node-fetch");
@@ -189,6 +190,24 @@ router.post("/dictionary", async(req, res) => {
   fetch(`https://some-random-api.com/others/dictionary?word=${word}`).then(i => i.json()).then(dta => {
     res.json(dta);
   });
+});
+//translater
+router.post("/translate", async(req, res) => {
+  var word = req.body.word;
+  var to = req.body.to;
+  if(!word){
+   res.json({success: false, message: "provide a text to translate"});
+    return;
+  }
+  if(!to){
+       res.json({success: false, message: "provide a language to translate like: en, bn, ch, hi, is"});
+    return;
+  }
+translate(word, {to: to}).then(res => {
+    res.json({success: true, message: res});
+}).catch(err => {
+res.json({success: true, message: "looks like you give an invalid language to translate with"})
+})
 });
 module.exports = router;
 
