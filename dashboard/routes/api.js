@@ -176,7 +176,7 @@ timeZone: data.addresses[0].timeZone
 });
 
 //joke api
-router.post("/joke", async(req, res) => {
+router.get("/joke", async(req, res) => {
 fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data => {
   res.json({success: true, joke: data.joke});
 }).catch(c => {
