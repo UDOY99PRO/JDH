@@ -206,6 +206,7 @@ router.post("/translate", async(req, res) => {
 translate(word, {to: to}).then(res => {
     res.json({success: true, message: res});
 }).catch(err => {
+  console.log(err);
 res.json({success: true, message: "looks like you give an invalid language to translate with"})
 })
 });
