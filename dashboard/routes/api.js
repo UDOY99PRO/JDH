@@ -183,7 +183,13 @@ fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data =
   res.json({success: false, joke: "could not fetched"});
 });
 });
-
+//dictionary api
+router.post("/dictionary", async(req, res) => {
+  var word = req.body.word;
+  fetch(`https://some-random-api.com/others/dictionary?word=${word}`).then(i => i.json()).then(dta => {
+    res.json(dta);
+  });
+});
 module.exports = router;
 
 
