@@ -175,6 +175,15 @@ timeZone: data.addresses[0].timeZone
   
 });
 
+//joke api
+router.post("/joke", async(req, res) => {
+fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data => {
+  res.json({success: true, joke: data.joke});
+}).catch(c => {
+  res.json({success: false, joke: "could not fetched"});
+});
+});
+
 module.exports = router;
 
 
