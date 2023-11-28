@@ -100,12 +100,40 @@ var data = req.body.data;
   if(!data){
 var data = "Data is Required";
   }
- await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data}`).then(res => res.text()).then(resu => {
-
-res.json({success: true, image_url: `${resu}`, format: "png" });
- }).catch(er => {
-   res.json({ success:false, message: 'some error occurred' });
- })
+  fetch("https://qrcode.tec-it.com/API/QRCode", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Referer": "https://qrcode.tec-it.com",
+  },
+  body: JSON.stringify({
+    data: {
+      data: data,
+      datatype: "Raw"
+    },
+    settings: {
+      errorcorrection: "L",
+      codepage: "utf8",
+      quietzone: 0,
+      quietunit: "Mm",
+      dpi: 300,
+      size: "Medium",
+      color: "#000000",
+      istransparent: "true",
+      backcolor: "#ffffff"
+    },
+    output: {
+      method: "Base64"
+    }
+  })
+})
+  .then(response => response.text())
+  .then(data => {
+    res.json({success: true, image_url: `data:image/png;base64,${resu}`, format: "png" });
+  })
+  .catch(error => {
+     res.json({ success:false, message: 'some error occurred' });
+  });
 });
 
 router.post("/nsfw-image-gen", async(req, res) => {
