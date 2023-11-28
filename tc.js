@@ -22,7 +22,7 @@ return data.json();
   }
 }
 
-var rawdata = await fetchPhoneDetails("IN", "+916296557613");  
+var rawdata = await fetchPhoneDetails(cc, number);  
  var data = rawdata.data[0]; 
 
 console.log(JSON.stringify(data))
@@ -30,3 +30,6 @@ console.log(JSON.stringify(data))
 }
 
 main(rcc, rnumber);
+
+
+  
