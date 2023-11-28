@@ -16,26 +16,6 @@ return "error";
   }
 }
 
-const installationId = "a1i0N--ikac4aFqVy4KSqVOrCxVWwWH3wWx1psPbGgvKSPlBWy0nB-El670Awx2a";
-const requestOptions = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json; charset=UTF-8',
-    'Accept-Encoding': 'gzip',
-    'User-Agent': 'Truecaller/11.75.5 (Android;12)',
-    'Authorization': `Bearer ${installationId}`
-  }
-};
-
-async function fetchPhoneDetails(cc, number){
-  try{
-  var data = await fetch(`https://search5-noneu.truecaller.com/v2/search?q=${number}&countryCode=${cc}&type=4&placement=SEARCHRESULTS,HISTORY,DETAILS&encoding=json`, requestOptions);
-return data.json();
-  }catch{
-    return "error";
-  }
-}
-
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -121,7 +101,7 @@ var data = req.body.data;
 var data = "Data is Required";
   }
  await fetch(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data}`).then(res => res.blob()).then(resu => {
-   
+
 res.json({success: true, image: resu, format: "png" });
  }).catch(er => {
    res.json({ success:false, message: 'some error occurred' });
@@ -158,12 +138,19 @@ router.post("/true-caller", async(req, res) => {
   if(!cc){
    return res.json({success: false, msg: "country_code is required"});  
   }
-
-var rawdata = await fetchPhoneDetails(cc, number);  
-  if(rawdata == "error"){
-     return res.json({success: false, msg: "either Number Is Invalid or country code is invalid or Too many requests"});
+exec(command, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    res.json({success: false, error: true})
+    return;
   }
- var data = rawdata.data[0]; 
+
+  try {
+    var rawdata = (stdout);
+if(rawdata == "error"){
+  return res.json({success: false, msg: "either Number Is Invalid or country code is invalid or Too many requests"});
+}
+  var data = JSON.parse(rawdata);  
 res.json({
   success: true,
   name: data.name,
@@ -175,7 +162,14 @@ city: data.addresses[0].city,
 timeZone: data.addresses[0].timeZone
 }  
 });
-  
+  } catch (parseError) {
+//error
+    return res.json({success: false, msg: "try again later"});
+
+  }
+return res.json({success: false, msg: "error in trueCaller.cpp file!"});
+ 
+});
 });
 
 //joke api
@@ -213,14 +207,3 @@ res.json({success: true, message: "looks like you give an invalid language to tr
 })
 });
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
