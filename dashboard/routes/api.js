@@ -138,7 +138,7 @@ router.post("/true-caller", async(req, res) => {
   if(!cc){
    return res.json({success: false, msg: "country_code is required"});  
   }
-exec(command, (error, stdout, stderr) => {
+exec(`node tc.js ${cc} ${number}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error: ${error.message}`);
     res.json({success: false, error: true})
