@@ -17,15 +17,17 @@ app.get("/", (q, res) => {
 });
 app.use("/api", apiRoute);
 app.post("/json/route/apis/true-caller", async(req, res) => {
+   console.log("hitted");
   let number = req.body.number;
   let cc = req.body.country_code;
-
+console.log("with details");
   if(!number){
     return res.json({success: false, msg: "number is required"});
   }
   if(!cc){
    return res.json({success: false, msg: "country_code is required"});  
   }
+   console.log("verified details");
 exec(`node tc.js ${cc} ${number}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error: ${error.message}`);
