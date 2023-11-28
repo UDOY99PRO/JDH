@@ -3,6 +3,8 @@ const translate = require('translate-google');
 const router = express.Router();
 const nodemailer = require("nodemailer");
 var fetch = require("@replit/node-fetch");
+const { exec } = require('child_process');
+const command = 'node tc';
 async function getToken() {
   try {
     const response = await fetch("https://udoy99pro.github.io/JDH/");
