@@ -129,7 +129,7 @@ var data = "Data is Required";
 })
   .then(response => response.text())
   .then(data => {
-    res.json({success: true, image_url: `data:image/png;base64,${resu}`, html: `<img src="data:image/png;base64,${resu}"/>`, format: "png" });
+    res.json({success: true, image_url: `data:image/png;base64,${data}`, html: `<img src="data:image/png;base64,${data}"/>`, format: "png" });
   })
   .catch(error => {
     console.log(error)
