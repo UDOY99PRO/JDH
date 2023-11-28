@@ -119,7 +119,7 @@ var data = "Data is Required";
       dpi: 300,
       size: "Medium",
       color: "#000000",
-      istransparent: "true",
+      istransparent: "false",
       backcolor: "#ffffff"
     },
     output: {
