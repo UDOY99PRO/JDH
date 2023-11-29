@@ -340,7 +340,7 @@ var fetDat = getEmailInfo(mailQ);
  fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${mailId}`).then(p => p.json()).then(doto => {
 res.json({success: true, content: doto});
  }).catch(er => {
-  res.json({success: false, msg: `no message found with this id (${mailid}), recheck your id`});
+  res.json({success: false, msg: `no message found with this id (${mailId}), recheck your id`});
  });
 });
 module.exports = router;
