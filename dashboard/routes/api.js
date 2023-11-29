@@ -337,10 +337,10 @@ var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
  if(isNaN(mailId)){ return res.json({ success: false, msg: "id should be number" })};
- fetch(``).then(p => p.json()).then(doto => {
-
+ fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${mailId}`).then(p => p.json()).then(doto => {
+res.json({success: true, content: doto});
  }).catch(er => {
-  res.json({success: false, msg: ``});
+  res.json({success: false, msg: `no message found with this id (${mailid}), recheck your id`});
  });
 });
 module.exports = router;
