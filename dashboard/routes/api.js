@@ -292,7 +292,10 @@ router.post("/temp-mail", async(req, res) => {
   
 });
 router.get("/temp-mail/generate-mail", async(req, res) => {
-  
+ let arraToSend = [];
+ arraToSend.push(`${genEmailName()}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`);
+ arraToSend.push(`${genEmailName()}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`);
+res.json({success: true, mails: arraToSend});
 });
 router.get("/temp-mail/generate-custom-mail", async(req, res) => {
   
