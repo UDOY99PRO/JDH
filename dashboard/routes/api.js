@@ -299,8 +299,8 @@ res.json({success: true, message: "looks like you give an invalid language to tr
 router.get("/temp-mail/ping", (req, res) => {
 res.send("SUCCESS");
 });
-router.post("/temp-mail", async(req, res) => {
-  
+router.get("/temp-mail", async(req, res) => {
+ res.send(true); 
 });
 router.get("/temp-mail/generate-mail", async(req, res) => {
  let arraToSend = [];
@@ -316,18 +316,27 @@ var emlRgx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
  res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Now You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
 });
 router.get("/temp-mail/get-mails", async(req, res) => {
- if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com"})}
+ if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com"})};
 var mailQ = req.query.address;
 var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
+ if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
   res.json({ success: true, messages: dtaa });
  }).catch(c => {
-  return res.json({success: false, msg: "somthing went wrong please report us about it and try again later" });
+  return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
 //https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
 });
-
+router.get("/temp-mail/read-mail", async(req, res) => {
+ if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com&id=fetched mail id"})};
+ if(!req.query || !req.query.id || req.query.id.trim() === ''){ return res.json({success: false, msg: "id query is required   ?address=name@txcct.com&id=fetched mail id"})};
+ var mailQ = req.query.address;
+ var mailId = req.query.id;
+var fetDat = getEmailInfo(mailQ);
+ if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
+ if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
+});
 module.exports = router;
 
 
