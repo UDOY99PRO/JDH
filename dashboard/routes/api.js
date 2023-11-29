@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 var fetch = require("@replit/node-fetch");
 const { exec } = require('child_process');
 const command = 'node tc';
-var tempMailArrAdd = ["wwjmp.com", "esiix.com", "xojxe.com", "yoggm.com" ];
+var tempMailArrAdd = ["txcct.com", "laafd.com", "vjuum.com", "ezztt.com", "icznn.com" ];
  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const lengths = [4, 5, 6];
 
