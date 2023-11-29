@@ -299,6 +299,7 @@ res.json({success: true, mails: arraToSend});
 });
 router.get("/temp-mail/generate-custom-mail", async(req, res) => {
  var nameToGen = req.prams.custom_name; 
- if(!nameToGen){ return res.json({success: false, msg: "custom_name is required"});;
+ if(!nameToGen || nameToGen.trim() === ''){ return res.json({success: false, msg: "custom_name is required"});
+                                           
 });
 module.exports = router;
