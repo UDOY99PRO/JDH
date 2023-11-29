@@ -300,9 +300,10 @@ res.json({success: true, mails: arraToSend});
 router.get("/temp-mail/generate-custom-mail", async(req, res) => {
  var nameToGen = req.prams.custom_name; 
  if(!nameToGen || nameToGen.trim() === ''){ return res.json({success: false, msg: "custom_name is required"})};
- if(!nameToGen.test(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})};                                           
+ if(!nameToGen.test(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})}; 
+ res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Niw You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
 });
-res.send({success: true, mail: `${nameToGen}@`});
+
 module.exports = router;
 
 
