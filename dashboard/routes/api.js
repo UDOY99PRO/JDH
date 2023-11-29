@@ -336,6 +336,12 @@ router.get("/temp-mail/read-mail", async(req, res) => {
 var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
+ if(isNaN(mailId)){ return res.json({ success: false, msg: "id should be number" })};
+ fetch(``).then(p => p.json()).then(doto => {
+
+ }).catch(er => {
+  res.json({success: false, msg: ``});
+ });
 });
 module.exports = router;
 
