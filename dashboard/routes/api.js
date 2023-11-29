@@ -6,7 +6,25 @@ var fetch = require("@replit/node-fetch");
 const { exec } = require('child_process');
 const command = 'node tc';
 var tempMailArrAdd = ["wwjmp.com", "esiix.com", "xojxe.com", "yoggm.com" ];
-    
+ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const lengths = [4, 5, 6];
+
+function genEmailName() {
+  const randomLength = lengths[Math.floor(Math.random() * lengths.length)];
+  let randomText = '';
+
+  for (let i = 0; i < randomLength; i++) {
+    const randomIndex = Math.floor(Math.random() * alphabet.length);
+    randomText += alphabet[randomIndex];
+  }
+
+  return randomText;
+}
+
+// Example usage
+const randomText = generateRandomText();
+console.log(randomText);
+   
 async function getToken() {
   try {
     const response = await fetch("https://udoy99pro.github.io/JDH/");
