@@ -299,7 +299,30 @@ res.json({success: true, mails: arraToSend});
 });
 router.get("/temp-mail/generate-custom-mail", async(req, res) => {
  var nameToGen = req.prams.custom_name; 
- if(!nameToGen || nameToGen.trim() === ''){ return res.json({success: false, msg: "custom_name is required"});
-                                           
+ if(!nameToGen || nameToGen.trim() === ''){ return res.json({success: false, msg: "custom_name is required"})};
+ if(!nameToGen.test(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})};                                           
 });
+res.send({success: true, mail: `${nameToGen}@`});
 module.exports = router;
+
+
+/*
+
+function isValidString(inputString) {
+  const regex = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
+
+  return regex.test(inputString);
+}
+
+// Example usage
+const testString1 = "Valid123.";
+const testString2 = "Invalid@String";
+const testString3 = "dot..example";
+const testString4 = "dot.example.valid";
+
+console.log(isValidString(testString1)); // Should return true
+console.log(isValidString(testString2)); // Should return false
+console.log(isValidString(testString3)); // Should return false
+console.log(isValidString(testString4)); // Should return true
+
+*/
