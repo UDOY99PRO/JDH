@@ -298,10 +298,11 @@ router.get("/temp-mail/generate-mail", async(req, res) => {
 res.json({success: true, mails: arraToSend});
 });
 router.get("/temp-mail/generate-custom-mail", async(req, res) => {
- if(!req.query || !req.query.custom_name || req.query.custom_name.trim() === ''){ return res.json({success: false, msg: "custom_name query is required  # ?custom_name=name"})};
- var nameToGen = req.query.custom_name; 
- if(!nameToGen.test(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})}; 
- res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Niw You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
+ if(!req.query || !req.query.custom_name || req.query.custom_name.trim() === ''){ return res.json({success: false, msg: "custom_name query is required   ?custom_name=name"})};
+ var nameToGen = req.query.custom_name;
+var emlRgx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/; 
+ if(!emlRgx.test(nameToGen)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})}; 
+ res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Now You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
 });
 
 module.exports = router;
