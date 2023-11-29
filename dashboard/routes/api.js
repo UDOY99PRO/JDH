@@ -304,6 +304,13 @@ var emlRgx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
  if(!emlRgx.test(nameToGen)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})}; 
  res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Now You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
 });
+router.get("/temp-mail/get-mails", async(req, res) => {
+ if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com"})}
+var mailQ = req.query.address;
+
+
+//https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
+});
 
 module.exports = router;
 
