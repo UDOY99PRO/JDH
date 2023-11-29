@@ -54,6 +54,7 @@ var message = req.body.message;
  // var resp = await ask_gpt(message);
   res.json({response: "error:: trying to fix, api will up soon", name: "Chat GPT"});
 });
+//pjng ro
 
 router.post("/send/email", async(req, res) => {
 var title = req.body.title;
@@ -85,7 +86,14 @@ if(ishtml == "true"){
 })
 }
 });
-
+///send/email ping
+router.get("/send/email/ping", (req, res) => {
+ res.send("SUCCESS");
+});
+///chat-bot ping
+router.get("/chat-bot/ping", (req, res) => {
+ res.send("SUCCESS");
+});
 router.post('/chat-bot', async (req, res) => {
   var msg = req.body.message;
   if(!msg){ var msg = "  "; };
@@ -115,6 +123,10 @@ router.post('/chat-bot', async (req, res) => {
   }
 });
 
+///qr-gen PING
+router.get("/qr-gen/ping", (req, res) => {
+ res.send("SUCCESS");
+});
 router.post("/qr-gen", async(req, res) => {
 var data = req.body.data;
   if(!data){
@@ -157,6 +169,9 @@ var data = "Data is Required";
   });
 });
 
+router.get("/nsfw-image-gen/ping", (req ,res) => {
+ res.send("SUCCESS");
+});
 router.post("/nsfw-image-gen", async(req, res) => {
   var type = req.body.type;
   if(type){
@@ -173,10 +188,18 @@ router.post("/nsfw-image-gen", async(req, res) => {
   res.json({success: true, url: img, type: type});
 });
 
+//ping
+router.get("/sms-bomber/ping", (req, res) => {
+res.send("success");
+});
 router.post("/sms-bomber", async(req, res) => {
   res.json({message: "NOT READY YET"});
 });
 
+//truecaller pkng
+router.get("/true-caller/ping", (req, res) => {
+ res.send("SUCCESS");
+});
 router.post("/true-caller", async(req, res) => {
   let number = req.body.number;
   let cc = req.body.country_code;
@@ -220,7 +243,10 @@ timeZone: data.addresses[0].timeZone
 });
 });
 
-//joke api
+//joke api PING
+router.get("/joke/ping", (req, res) => {
+ res.send("SUCCESS");
+});
 router.get("/joke", async(req, res) => {
 fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data => {
   res.json({success: true, joke: data.joke});
@@ -229,13 +255,20 @@ fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data =
 });
 });
 //dictionary api
+router.get("/dictionary/ping", (req, res) => {
+ res.send("SUCCESS");
+});
 router.post("/dictionary", async(req, res) => {
   var word = req.body.word;
   fetch(`https://some-random-api.com/others/dictionary?word=${word}`).then(i => i.json()).then(dta => {
     res.json(dta);
   });
 });
-//translater
+
+//translater PING
+router.get("/translate/ping", (req, res) => {
+res.send("SUCCESS");
+});
 router.post("/translate", async(req, res) => {
   var word = req.body.word;
   var to = req.body.to;
@@ -256,13 +289,16 @@ res.json({success: true, message: "looks like you give an invalid language to tr
 });
 
   //temp mail service 
+router.get("/temp-mail/ping", (req, res) => {
+res.send("SUCCESS");
+});
 router.post("/temp-mail", async(req, res) => {
   
 });
 router.get("/temp-mail/generate-mail", async(req, res) => {
   
 });
-router.get("temp-mail/generate-custom-mail", async(req, res) => {
+router.get("/temp-mail/generate-custom-mail", async(req, res) => {
   
 });
 module.exports = router;
