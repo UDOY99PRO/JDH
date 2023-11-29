@@ -196,7 +196,6 @@ timeZone: data.addresses[0].timeZone
     return res.json({success: false, msg: "try again later"});
 
   }
-return res.json({success: false, msg: "error in trueCaller.cpp file!"});
  
 });
 });
