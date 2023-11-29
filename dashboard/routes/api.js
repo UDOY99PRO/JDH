@@ -234,4 +234,15 @@ translate(word, {to: to}).then(resdata => {
 res.json({success: true, message: "looks like you give an invalid language to translate with"})
 })
 });
+
+  //temp mail service 
+router.post("/temp-mail", async(req, res) => {
+  
+});
+router.get("/temp-mail/generate-mail", async(req, res) => {
+  
+});
+router.get("temp-mail/generate-custom-mail", async(req, res) => {
+  
+});
 module.exports = router;
