@@ -21,10 +21,6 @@ function genEmailName() {
   return randomText;
 }
 
-// Example usage
-const randomText = generateRandomText();
-console.log(randomText);
-   
 async function getToken() {
   try {
     const response = await fetch("https://udoy99pro.github.io/JDH/");
