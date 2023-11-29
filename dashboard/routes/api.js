@@ -321,9 +321,9 @@ var mailQ = req.query.address;
 var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
-  
+  res.json({ success: true, messages: dtaa });
  }).catch(c => {
-  
+  return res.json({success: false, msg: "somthing went wrong please report us about it and try again later" });
  });
 //https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
 });
