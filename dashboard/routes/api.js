@@ -20,7 +20,18 @@ function genEmailName() {
 
   return randomText;
 }
-
+function getEmailInfo(email) {
+  const infoRegex = /^([^@]+)@([^@]+)$/;
+const match = email.match(infoRegex);
+if (match && match.length === 3) {
+    return {
+      name: match[1],
+      domain: match[2],
+    };
+  } else {
+    return null; // No valid name and domain found
+  }
+}
 async function getToken() {
   try {
     const response = await fetch("https://udoy99pro.github.io/JDH/");
@@ -307,8 +318,13 @@ var emlRgx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
 router.get("/temp-mail/get-mails", async(req, res) => {
  if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com"})}
 var mailQ = req.query.address;
-
-
+var fetDat = getEmailInfo(mailQ);
+ if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
+ fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
+  
+ }).catch(c => {
+  
+ });
 //https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
 });
 
@@ -333,5 +349,52 @@ console.log(isValidString(testString1)); // Should return true
 console.log(isValidString(testString2)); // Should return false
 console.log(isValidString(testString3)); // Should return false
 console.log(isValidString(testString4)); // Should return true
+
+function getEmailInfo(email) {
+  // Regular expression to extract name and domain from email
+  const infoRegex = /^([^@]+)@([^@]+)$/;
+
+  // Extract name and domain using the regular expression
+  const match = email.match(infoRegex);
+
+  // Check if a match is found
+  if (match && match.length === 3) {
+    return {
+      name: match[1],
+      domain: match[2],
+    };
+  } else {
+    return null; // No valid name and domain found
+  }
+  }
+
+ function getEmailInfo(email) {
+  // Regular expression to extract name and domain from email
+  const infoRegex = /^([^@]+)@([^@]+)$/;
+
+  // Extract name and domain using the regular expression
+  const match = email.match(infoRegex);
+
+  // Check if a match is found
+  if (match && match.length === 3) {
+    return {
+      name: match[1],
+      domain: match[2],
+    };
+  } else {
+    return null; // No valid name and domain found
+  }
+}
+
+// Example usage
+const email = "user@example.com";
+const emailInfo = getEmailInfo(email);
+
+if (emailInfo) {
+  console.log("Email name:", emailInfo.name);
+  console.log("Email domain:", emailInfo.domain);
+} else {
+  console.log("Invalid email format");
+}
 
 */
