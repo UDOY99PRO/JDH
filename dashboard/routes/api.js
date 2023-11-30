@@ -51,16 +51,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-router.get("/", (q, res) => {
-  res.send("Api route");
-});
 
-router.post("/gpt", async(req, res) => {
-var message = req.body.message;
-  if(!message){ return res.json({error: true, response: `Missing Data In Request use {"message": "your message"} as data`, name: "Chat GPT"}); };
- // var resp = await ask_gpt(message);
-  res.json({response: "error:: trying to fix, api will up soon", name: "Chat GPT"});
-});
 //pjng ro
 
 router.post("/send/email", async(req, res) => {
@@ -172,7 +163,7 @@ var data = "Data is Required";
   })
   .catch(error => {
     console.log(error)
-     res.json({ success:false, message: 'some error occurred' });
+     res.json({ success:false, message: 'some error occurred, send me message about it!' });
   });
 });
 
@@ -243,10 +234,8 @@ timeZone: data.addresses[0].timeZone
 });
   } catch (parseError) {
 //error
-    return res.json({success: false, msg: "try again later"});
-
+    return res.json({success: false, msg: "Looks Like your country_code or number is invalid or not availabl, if you think this is a bug please send me message"});
   }
- 
 });
 });
 
@@ -340,76 +329,7 @@ var fetDat = getEmailInfo(mailQ);
  fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${mailId}`).then(p => p.json()).then(doto => {
 res.json({success: true, content: doto});
  }).catch(er => {
-  res.json({success: false, msg: `no message found with this id (${mailId}), recheck your id`});
+  res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
  });
 });
 module.exports = router;
-
-
-/*
-
-function isValidString(inputString) {
-  const regex = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
-
-  return regex.test(inputString);
-}
-
-// Example usage
-const testString1 = "Valid123.";
-const testString2 = "Invalid@String";
-const testString3 = "dot..example";
-const testString4 = "dot.example.valid";
-
-console.log(isValidString(testString1)); // Should return true
-console.log(isValidString(testString2)); // Should return false
-console.log(isValidString(testString3)); // Should return false
-console.log(isValidString(testString4)); // Should return true
-
-function getEmailInfo(email) {
-  // Regular expression to extract name and domain from email
-  const infoRegex = /^([^@]+)@([^@]+)$/;
-
-  // Extract name and domain using the regular expression
-  const match = email.match(infoRegex);
-
-  // Check if a match is found
-  if (match && match.length === 3) {
-    return {
-      name: match[1],
-      domain: match[2],
-    };
-  } else {
-    return null; // No valid name and domain found
-  }
-  }
-
- function getEmailInfo(email) {
-  // Regular expression to extract name and domain from email
-  const infoRegex = /^([^@]+)@([^@]+)$/;
-
-  // Extract name and domain using the regular expression
-  const match = email.match(infoRegex);
-
-  // Check if a match is found
-  if (match && match.length === 3) {
-    return {
-      name: match[1],
-      domain: match[2],
-    };
-  } else {
-    return null; // No valid name and domain found
-  }
-}
-
-// Example usage
-const email = "user@example.com";
-const emailInfo = getEmailInfo(email);
-
-if (emailInfo) {
-  console.log("Email name:", emailInfo.name);
-  console.log("Email domain:", emailInfo.domain);
-} else {
-  console.log("Invalid email format");
-}
-
-*/
