@@ -311,7 +311,9 @@ var fetDat = getEmailInfo(mailQ);
   if(dtaa < 1){ return res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"})};
   let allMsgs = [];
   dtaa.forEach(dd => {
-   allMsgs.push(dd);
+   fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${dd.id}`).then(rr => rr.json()).then(fdata => {
+   allMsgs.push(fdata);
+   }).catch();
   });
   res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"});
  }).catch(c => {
@@ -337,3 +339,10 @@ res.json({success: true, content: doto});
  });
 });*/
 module.exports = router;
+
+
+
+
+
+
+
