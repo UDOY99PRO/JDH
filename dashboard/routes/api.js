@@ -310,14 +310,21 @@ var fetDat = getEmailInfo(mailQ);
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(async dtaa => {
   if(dtaa < 1){ return res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"})};
   let allMsgs = [];
-  await dtaa.forEach(async dd => {
+Promise.all(dtaa.map(async obj => {
+  try {
+    var response = await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${obj.id}`);
+    var data = await response.json();
+    allMsgs.push(data);
+  } catch (error) {}
+}));
+ /* await dtaa.forEach(async dd => {
    await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${dd.id}`).then(rr => rr.json()).then(async fdata => {
    await allMsgs.push(fdata);
    }).catch();
   });
   Promise.all(allMsgs).then(() => {
   res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"});
-  });
+  });*/
  }).catch(c => {
   return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
