@@ -304,19 +304,24 @@ var emlRgx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/;
  if(!emlRgx.test(nameToGen)){  return res.json({success: false, msg: "* Only alphabets, numbers, and dots should be used in the name. => ex: my.name1 ✅ \n\n*There should not be a dot at the end of the name. =>  ex: (my.name.)[❌];  (my.name)[✅] \n\n"})}; 
  res.send({success: true, mail: `${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]}`, msg: `Now You can use ${nameToGen}@${tempMailArrAdd[Math.floor(Math.random() * tempMailArrAdd.length)]} address as your temp email address`});
 });
-router.get("/temp-mail/get-mails", async(req, res) => {
+router.get("/temp-mail/read-messages", async(req, res) => {
  if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com"})};
 var mailQ = req.query.address;
 var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
-  res.json({ success: true, messages: dtaa });
+  let allMsgs = [];
+  data.forEach(dd => {
+   
+  });
  }).catch(c => {
   return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
 //https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
 });
+/*
+depricated
 router.get("/temp-mail/read-mail", async(req, res) => {
  if(!req.query || !req.query.address || req.query.address.trim() === ''){ return res.json({success: false, msg: "address query is required   ?address=name@txcct.com&id=fetched mail id"})};
  if(!req.query || !req.query.id || req.query.id.trim() === ''){ return res.json({success: false, msg: "id query is required   ?address=name@txcct.com&id=fetched mail id"})};
@@ -331,5 +336,5 @@ res.json({success: true, content: doto});
  }).catch(er => {
   res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
  });
-});
+});*/
 module.exports = router;
