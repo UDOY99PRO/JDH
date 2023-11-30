@@ -316,7 +316,11 @@ Promise.all(dtaa.map(async obj => {
     var data = await response.json();
     allMsgs.push(data);
   } catch (error) {}
-}));
+})).then(dota => {
+ res.json({success: true, content: dota});
+}).catch(() => {
+ res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
+});
  /* await dtaa.forEach(async dd => {
    await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${dd.id}`).then(rr => rr.json()).then(async fdata => {
    await allMsgs.push(fdata);
