@@ -317,7 +317,7 @@ Promise.all(dtaa.map(async obj => {
     allMsgs.push(data);
   } catch (error) {}
 })).then(dota => {
- res.json({success: true, content: dota});
+ res.json({success: true, content: allMsgs});
 }).catch(() => {
  res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
 });
