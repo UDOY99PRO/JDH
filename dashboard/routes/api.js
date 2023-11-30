@@ -315,7 +315,9 @@ var fetDat = getEmailInfo(mailQ);
    allMsgs.push(fdata);
    }).catch();
   });
+  Promise.all(allMsgs).then(() => {
   res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"});
+  });
  }).catch(c => {
   return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
