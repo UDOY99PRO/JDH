@@ -319,7 +319,7 @@ Promise.all(dtaa.map(async obj => {
 })).then(dota => {
  res.json({success: true, content: allMsgs});
 }).catch(() => {
- res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
+ res.json({success: false, msg: `no message found with this address (address: ${mailQ}), recheck your address`});
 });
  /* await dtaa.forEach(async dd => {
    await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${fetDat.name}&domain=${fetDat.domain}&id=${dd.id}`).then(rr => rr.json()).then(async fdata => {
@@ -330,7 +330,7 @@ Promise.all(dtaa.map(async obj => {
   res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"});
   });*/
  }).catch(c => {
-  return res.json({success: false, msg: "please Double check your query and try again later!" });
+  res.json({success: false, msg: `no message found with this address (address: ${mailQ}), recheck your address`});
  });
 //https://www.1secmail.com/api/v1/?action=getMessages&login=hd&domain=txcct.com
 });
