@@ -311,10 +311,12 @@ var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
+  if(dtaa){};
   let allMsgs = [];
-  data.forEach(dd => {
-   
+  dtaa.forEach(dd => {
+   allMsgs.push(dd);
   });
+  res.json({success: true, messages: allMsgs});
  }).catch(c => {
   return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
