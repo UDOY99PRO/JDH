@@ -17,7 +17,6 @@ function genEmailName() {
     const randomIndex = Math.floor(Math.random() * alphabet.length);
     randomText += alphabet[randomIndex];
   }
-
   return randomText;
 }
 function getEmailInfo(email) {
@@ -51,9 +50,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-
 //pjng ro
-
 router.post("/send/email", async(req, res) => {
 var title = req.body.title;
 var ishtml = req.body.ishtml;
@@ -311,12 +308,12 @@ var fetDat = getEmailInfo(mailQ);
  if(!fetDat){ return res.json({ success: false, msg: "Looks Like the email address you entered is invalid please double check your address" })};
  if(!tempMailArrAdd.includes(fetDat.domain)){ return res.json({success: false, msg: `Looks Like you are trying to use other domain, avalable domain array: ${tempMailArrAdd}` })};
  fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${fetDat.name}&domain=${fetDat.domain}`).then(i => i.json()).then(dtaa => {
-  if(dtaa){};
+  if(dtaa < 1){ return res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"})};
   let allMsgs = [];
   dtaa.forEach(dd => {
    allMsgs.push(dd);
   });
-  res.json({success: true, messages: allMsgs});
+  res.json({success: true, messages: allMsgs, msg: "If your message hasn't arrived, please check again in 15 to 20 seconds. Also, verify your entered email address; was the message sent to this email address?"});
  }).catch(c => {
   return res.json({success: false, msg: "please Double check your query and try again later!" });
  });
