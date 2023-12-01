@@ -352,6 +352,14 @@ res.json({success: true, content: doto});
   res.json({success: false, msg: `no message found with this id and address (id: ${mailId} ; address: ${mailQ}), recheck your id and address`});
  });
 });*/
+
+//ff-id-check ping
+router.get("/ff-id-check/ping", async(req, res) => {
+res.send("Ping Successfully ");
+});
+router.get("/ff-id-check", async(req, res) => {
+
+});
 module.exports = router;
 
 
