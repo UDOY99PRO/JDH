@@ -354,7 +354,7 @@ res.json({success: true, content: doto});
 });*/
 
 //ff-id-check ping
-router.get("/ff-id-check/ping", async(req, res) => {
+router.get("/ff-id-check/f/ping", async(req, res) => {
 res.send("Ping Successfully ");
 });
 router.get("/ff-id-check", async(req, res) => {
