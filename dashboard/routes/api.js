@@ -358,7 +358,14 @@ router.get("/ff-id-check/ping", async(req, res) => {
 res.send("Ping Successfully ");
 });
 router.get("/ff-id-check", async(req, res) => {
-
+ if(!req.query || !req.query.id || isNaN(req.query.id)){
+  return res.json({ error: "Please check your id query" });
+ }
+fetch(`https://ff.garena.com/api/antihack/check_banned?lang=en&uid=${req.query.id}`).then(j => j.json()).then(dd => {
+res.json(dd);
+}).catch(k => {
+   return res.json({ error: "Sorry Somthing Went Wrong" });
+});
 });
 module.exports = router;
 
