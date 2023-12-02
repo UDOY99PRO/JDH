@@ -51,35 +51,43 @@ var transporter = nodemailer.createTransport({
 });
 
 //pjng ro
-router.post("/send/email", async(req, res) => {
-var title = req.body.title;
-var ishtml = req.body.ishtml;
-var body = req.body.body;
-var sendto = req.body.sendto;
-var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+router.post("/send/email", async (req, res) => {
+  var title = req.body.title;
+  var ishtml = req.body.ishtml;
+  var body = req.body.body;
+  var sendto = req.body.sendto;
+  var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-if(!title){ var title = "_"; }else if(!body){ var body = "_"; }else if(!sendto){ return res.json({error: true, message: "No Email Specified to send"}); }else if(!emailRegex.test(sendto)){ return res.json({error: true, message: "Invalid Email Address"}); };
+  if (!title) { var title = "_"; } else if (!body) { var body = "_"; } else if (!sendto) { return res.json({ error: true, message: "No Email Specified to send" }); } else if (!emailRegex.test(sendto)) { return res.json({ error: true, message: "Invalid Email Address" }); };
   var withtext = {
-  from: process.env.emailAPIaddress,
-  to: sendto,
-  subject: title,
-  html: body
+    from: process.env.emailAPIaddress,
+    to: sendto,
+    subject: title,
+    text: body
+  };
+  var withhtml = {
+    from: process.env.emailAPIaddress,
+    to: sendto,
+    subject: title,
+    html: body
+  };
+  if (ishtml == "true") {
+    transporter.sendMail(withhtml, function(error, info) {
+      if (error) { res.json({ error: true, message: `Email address ${sendto} not found` }); 
+       return console.log(error);
+         } else { res.json({ error: false, message: ` Successfully Email Sent to ${sendto}` });
+console.log(info); 
 };
-var withhtml = {
-  from: process.env.emailAPIaddress,
-  to: sendto,
-  subject: title,
-  text: body
-};
-if(ishtml == "true"){
-  transporter.sendMail(withhtml, function(error, info){
-  if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
-  });
-}else{
-  transporter.sendMail(withtext, function(error, info){
-  if (error) { return res.json({error: true, message: `Email address ${sendto} not found`}); } else { res.json({error: false, message: ` Successfully Email Sent to ${sendto}`}); };
-})
-}
+    });
+  } else {
+    transporter.sendMail(withtext, function(error, info) {
+      if (error) { res.json({ error: true, message: `Email address ${sendto} not found` }); 
+return console.log(error);
+} else { 
+        res.json({ error: false, message: ` Successfully Email Sent to ${sendto}` });
+      console.log(info)};
+    })
+  }
 });
 ///send/email ping
 router.get("/send/email/ping", (req, res) => {
