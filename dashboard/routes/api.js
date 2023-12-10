@@ -207,13 +207,13 @@ router.post("/true-caller", async(req, res) => {
   let number = req.body.number;
   let cc = req.body.country_code;
 
-  if(!number){
-    return res.json({success: false, msg: "number is required"});
+  if(!number || isNaN(number)){
+    return res.json({success: false, msg: "number is required please recheck your number and try again"});
   }
   if(!cc){
    return res.json({success: false, msg: "country_code is required"});  
   }
-exec(`node tc.js ${cc} ${number}`, (error, stdout, stderr) => {
+exec(`node tc.js ${cc.replace(/\s/g, '')} ${number.replace(/\s/g, '')}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`Error: ${error.message}`);
     res.json({success: false, error: true})
