@@ -52,6 +52,9 @@ var transporter = nodemailer.createTransport({
 
 //pjng ro
 router.post("/send/email", async (req, res) => {
+ if(!req.body){
+  return res.json({success: false, msg: "Invalid json body recived from rapid api"});
+ };
   var title = req.body.title;
   var ishtml = req.body.ishtml;
   var body = req.body.body;
