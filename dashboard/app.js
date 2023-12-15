@@ -17,7 +17,8 @@ app.get("/", (q, res) => {
 });
 app.use("/api", apiRoute);
 app.post("/json/route/apis/true-caller", async(req, res) => {
-   console.log("hitted");
+   return res.json({error: true, msg: "contact with sujoy in rapid api or telegram; rapidAPI link: https://rapidapi.com/user/sujoyk211"});
+ /*  console.log("hitted");
   let number = req.body.number;
   let cc = req.body.country_code;
 console.log("with details");
@@ -59,7 +60,7 @@ timeZone: data.addresses[0].timeZone
   }
 return res.json({success: false, msg: "error in trueCaller.cpp file!"});
  
-});
+});*/
 });
 
 
