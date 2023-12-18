@@ -49,7 +49,23 @@ var transporter = nodemailer.createTransport({
     pass: process.env.emailAPIpass
   }
 });
+//restart server
+router.get("/restart", async(req, res) => {
+var oooptions = {
+  method: 'POST',
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    authorization: `Bearer ${process.env.render_key}`
+  },
+  body: JSON.stringify({clearCache: 'clear'})
+};
 
+fetch('https://api.render.com/v1/services/srv-ckl44mou1l6c738lq0q0/deploys', oooptions)
+  .then(response => response.json())
+  .then(response => res.json(response))
+  .catch(err => res.json(err));
+});
 //pjng ro
 router.post("/send/email", async (req, res) => {
  if(!req.body){
