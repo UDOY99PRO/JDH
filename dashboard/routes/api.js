@@ -290,6 +290,16 @@ translate(word, {to: to, from: from}).then(resdata => {
 res.json({success: true, message: "looks like you give an invalid language to translate, Please See the language list using `Language list` example"})
 })
 });
+router.get("/translate/detect", async(req, res) => {
+ if(!req.query || !req.query.text){
+ return res.json({success: false, msg: `text query is required to detect the language`});
+ };
+var text = req.query.text;
+ res.json({success: true, msg: text});
+});
+router.get("/translate/list/languages", async(req, res) => {
+res.json([1, 2, 3, 4, 5]);
+});
 
   //temp mail service 
 router.get("/temp-mail/ping", (req, res) => {
