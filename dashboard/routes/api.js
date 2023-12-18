@@ -308,7 +308,7 @@ res.json({ success: false, msg: "Error When detecting the language looks like th
  });
 });
 router.get("/translate/list/languages", async(req, res) => {
-res.json([1, 2, 3, 4, 5]);
+res.json(translate.languages);
 });
 
   //temp mail service 
