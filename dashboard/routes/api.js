@@ -247,35 +247,18 @@ timeZone: data.addresses[0].timeZone
 });
 });
 
-//joke api PING
-router.get("/joke/ping", (req, res) => {
- res.send("SUCCESS");
-});
-router.get("/joke", async(req, res) => {
-fetch("https://some-random-api.com/others/joke").then(i => i.json()).then(data => {
-  res.json({success: true, joke: data.joke});
-}).catch(c => {
-  res.json({success: false, joke: "could not fetched"});
-});
-});
-//dictionary api
-router.get("/dictionary/ping", (req, res) => {
- res.send("SUCCESS");
-});
-router.post("/dictionary", async(req, res) => {
-  var word = req.body.word;
-  fetch(`https://some-random-api.com/others/dictionary?word=${word}`).then(i => i.json()).then(dta => {
-    res.json(dta);
-  });
-});
 
 //translater PING
 router.get("/translate/ping", (req, res) => {
 res.send("SUCCESS");
 });
 router.post("/translate", async(req, res) => {
+ if(!req.body){
+  return res.json({success: false, msg: "Body is required"});
+ }
   var word = req.body.word;
-  var to = req.body.to;
+  var to = req.body.lang_to;
+  var from = req.body.lang_from ? req.body.lang_from : "auto";
   if(!word){
    res.json({success: false, message: "provide a text to translate"});
     return;
