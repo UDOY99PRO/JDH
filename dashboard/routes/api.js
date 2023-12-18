@@ -257,8 +257,8 @@ router.post("/translate", async(req, res) => {
   return res.json({success: false, msg: "Body is required"});
  }
   var word = req.body.word;
-  var to = req.body.lang_to;
-  var from = req.body.lang_from ? req.body.lang_from : "auto";
+  var to = req.body.to;
+  var from = req.body.from ? req.body.lang_from : "auto";
   if(!word){
    res.json({success: false, message: "provide a text to translate"});
     return;
@@ -267,11 +267,11 @@ router.post("/translate", async(req, res) => {
        res.json({success: false, message: "provide a language to translate like: en, bn, ch, hi, is"});
     return;
   }
-translate(word, {to: to}).then(resdata => {
+translate(word, {to: to, from: from}).then(resdata => {
     res.json({success: true, message: resdata});
 }).catch(err => {
   console.log(err);
-res.json({success: true, message: "looks like you give an invalid language to translate with"})
+res.json({success: true, message: "looks like you give an invalid language to translate, Please See the language list using `Language list` example"})
 })
 });
 
