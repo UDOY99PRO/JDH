@@ -1,5 +1,5 @@
 const express = require('express');
-const translate = require('translate-google');
+const translate = require('@iamtraction/google-translate');
 const router = express.Router();
 const nodemailer = require("nodemailer");
 var fetch = require("@replit/node-fetch");
@@ -258,7 +258,7 @@ router.post("/translate", async(req, res) => {
  }
   var word = req.body.word;
   var to = req.body.to;
-  var from = req.body.from ? req.body.lang_from : "auto";
+  var from = req.body.from ? req.body.from : "auto";
   if(!word){
    res.json({success: false, message: "provide a text to translate"});
     return;
@@ -268,7 +268,7 @@ router.post("/translate", async(req, res) => {
     return;
   }
 translate(word, {to: to, from: from}).then(resdata => {
-    res.json({success: true, message: resdata});
+    res.json({success: true, data: resdata});
 }).catch(err => {
   console.log(err);
 res.json({success: true, message: "looks like you give an invalid language to translate, Please See the language list using `Language list` example"})
