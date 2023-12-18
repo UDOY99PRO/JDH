@@ -295,7 +295,15 @@ router.get("/translate/detect", async(req, res) => {
  return res.json({success: false, msg: `text query is required to detect the language`});
  };
 var text = req.query.text;
- res.json({success: true, msg: text});
+translate(text, {to: "en"}).then(data => {
+ var codeLanguage = data.from.language.iso;
+ if(!codeLanguage){
+  return res.json({success: false, mag: "Unable To detect The language of the text"});
+ }
+ 
+}).catch(() => {
+res.json({ success: false, msg: "Error When detecting the language looks like the language is not valid or smth" });
+ });
 });
 router.get("/translate/list/languages", async(req, res) => {
 res.json([1, 2, 3, 4, 5]);
