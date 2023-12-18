@@ -300,7 +300,9 @@ translate(text, {to: "en"}).then(data => {
  if(!codeLanguage){
   return res.json({success: false, mag: "Unable To detect The language of the text"});
  }
- 
+ var langg = translate.languages[codeLanguage];
+
+ res.json({success: true, iso: codeLanguage, language: langg});
 }).catch(() => {
 res.json({ success: false, msg: "Error When detecting the language looks like the language is not valid or smth" });
  });
