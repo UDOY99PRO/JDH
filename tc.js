@@ -16,6 +16,7 @@ const requestOptions = {
 async function fetchPhoneDetails(cc, number){
   try{
   var data = await fetch(`https://search5-noneu.truecaller.com/v2/search?q=${number}&countryCode=${cc}&type=4&placement=SEARCHRESULTS,HISTORY,DETAILS&encoding=json`, requestOptions);
+    console.log(data);
 return data.json();
   }catch(erro){
     console.log(erro);
