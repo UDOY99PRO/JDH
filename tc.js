@@ -24,6 +24,7 @@ return data.json();
 }
 
 var rawdata = await fetchPhoneDetails(cc, number);  
+  console.log(rawdata);
  var data = rawdata.data[0]; 
 
 console.log(JSON.stringify(data))
