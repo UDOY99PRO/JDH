@@ -10,7 +10,7 @@ const requestOptions = {
     'Content-Type': 'application/json; charset=UTF-8',
     'Accept-Encoding': 'gzip',
     'User-Agent': 'Truecaller/11.75.5 (Android;12)',
-    'Authorization': `Bearer a1i0p--jQBd6NFoVp_nPucgWqH2tpi8r9YHANVNwhpml4vgW1XjAxzP5d72qK09j`
+    'Authorization': `Bearer a1i0j--jvJ__kFfkeKQrLH1Ls8SRufPh372hPqOzcf-q5XXGxLb4xf4-E74qon3E`
   }
 };
 async function fetchPhoneDetails(cc, number){
