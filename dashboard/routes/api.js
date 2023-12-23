@@ -241,6 +241,7 @@ exec(`node tc.js ${cc.replace(/\s/g, '')} ${number.replace(/\s/g, '')}`, (error,
 
   try {
     var rawdata = (stdout);
+   console.log(rawdata);
 if(rawdata == "error"){
   return res.json({success: false, msg: "either Number Is Invalid or country code is invalid or Too many requests"});
 }
