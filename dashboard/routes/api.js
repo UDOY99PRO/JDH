@@ -209,6 +209,24 @@ router.post("/nsfw-image-gen", async(req, res) => {
   var img = stockImages[type][Math.floor(Math.random() * stockImages[type].length)];
   res.json({success: true, url: img, type: type});
 });
+router.get("/nsfw-image-gen/ping", (req ,res) => {
+ res.send("SUCCESS");
+});
+router.get("/nsfw-image-gen", async(req, res) => {
+  var type = req.query.type;
+  if(type){
+  var type = type.toLowerCase();
+  }
+  var typeArray = ["pussy", "boobs", "ass", "gonewild", "thigh", "4k"];
+  if(!type){
+    var type = typeArray[Math.floor(Math.random() * typeArray.length)];
+  }
+  if(!typeArray.includes(type)){
+      var type = typeArray[Math.floor(Math.random() * typeArray.length)];
+  }
+  var img = stockImages[type][Math.floor(Math.random() * stockImages[type].length)];
+  res.json({success: true, url: img, type: type});
+});
 
 //ping
 router.get("/sms-bomber/ping", (req, res) => {
